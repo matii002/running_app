@@ -6,9 +6,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Repository//typ domeny którą należy zarządzać
+@Repository//operacje na objektach
 public class RunRepository {
 
     private List<Run> runs = new ArrayList<>();//lista przebiegnięć
@@ -18,7 +17,7 @@ public class RunRepository {
     //Sekwencja elementów obsługujących sekwencyjne i równoległe operacje agregujące
     Run findById(Integer id){
         return runs.stream()
-                .filter(run -> run.id() == id)
+                .filter(run -> run.id() == id) //id() - getter
                 .findFirst()//zwrca opcjonalną wersje lub pusty
                 .get();
     }
