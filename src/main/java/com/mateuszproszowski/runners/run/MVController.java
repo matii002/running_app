@@ -9,20 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController//oznaczamy kontroler bez tego klasa nie była by w stanie odpowiadać na żadania
-@RequestMapping("/api/runs")//to co jest pod spodem znajduje się w katalogu nadrzędnym /api/runs
+@RestController
+@RequestMapping("/api/runs")
 public class MVController {
     private final RunRepository runRepository;
-    //@Autowired - wstrzyknięcie instancji klasy do konstruktora, dla starszych wersji
     public MVController(RunRepository runRepository){
         this.runRepository = runRepository;
     }
-    @GetMapping("")//mapowanie punkt końcowy
+    @GetMapping("")
     List<Run> findAll(){
         return runRepository.findAll();
     }
-    @GetMapping("/{id}")//mapowanie punkt końcowy
-    //@PathVariable można użyć do obsługi zmiennych szablonu w mapowaniu URL żądania i ustawienia ich jako parametrów metody
+    @GetMapping("/{id}")
     Run findById(@PathVariable Integer id){
         return runRepository.findById(id);
     }
